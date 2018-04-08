@@ -3,20 +3,31 @@ STRIP=/usr/bin/strip
 CFLAGS=-Wall
 LDFLAGS=
 
-all: HexDump03
+all: CLarg1 CLarg2 CLarg3
 
-HexDump03.o: HexDump03.c HexDump02.h
-	     $(CC) -c $(CFLAGS) HexDump03.c
+CLarg1.o: CLarg1.c
+	   $(CC) -c $(CFLAGS) CLarg1.c
 
-Hex02-fnc.o: Hex02-fnc.c HexDump02.h
-	     $(CC) -c $(CFLAGS) Hex02-fnc.c
+CLarg2.o: CLarg2.c
+	   $(CC) -c $(CFLAGS) CLarg2.c
 
-HexDump03: HexDump03.o Hex02-fnc.o
-	   $(CC) -o HexDump03 HexDump03.o Hex02-fnc.o $(LDFLAGS)
-	   $(STRIP) HexDump03
+CLarg3.o: CLarg3.c
+	   $(CC) -c $(CFLAGS) CLarg3.c
+
+CLarg1: CLarg1.o
+	$(CC) -o CLarg1 CLarg1.o $(LDFLAGS)
+	$(STRIP) CLarg1
+
+CLarg2: CLarg2.o
+	$(CC) -o CLarg2 CLarg2.o $(LDFLAGS)
+	$(STRIP) CLarg2
+
+CLarg3: CLarg3.o
+	$(CC) -o CLarg3 CLarg3.o $(LDFLAGS)
+	$(STRIP) CLarg3
 
 .PHONY: clean
 
 clean:
-	rm -rf HexDump03 HexDump03.o Hex02-fnc.o
+	rm -rf CLarg1 CLarg2 CLarg3 *.o
 
